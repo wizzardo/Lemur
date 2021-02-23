@@ -105,6 +105,10 @@ configure(allprojects.findAll {it.name != 'extensions'}) {
 
 }
 
+jar {
+    exclude '**/*.psd'
+}
+
 // *** For some reason, this can't be injected from the root project
 //     or it picks up the root project sources instead of the subproject
 //     and doesn't even produce main jars.
