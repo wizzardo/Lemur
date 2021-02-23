@@ -23,7 +23,7 @@ ext {
     releaseVcsTag = "v${project.version}"
 }
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 compileJava {
     options.encoding = 'UTF-8'
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
@@ -43,7 +43,6 @@ repositories {
 dependencies {
     compile "org.jmonkeyengine:jme3-core:$jmeVersion"
 
-    compile 'com.google.guava:guava:19.0'
     compile 'org.slf4j:slf4j-api:1.7.13'
 }
 

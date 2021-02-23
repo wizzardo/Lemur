@@ -34,9 +34,6 @@
 
 package com.simsilica.lemur;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-
 import org.slf4j.*;
 
 import com.jme3.app.Application;
@@ -69,6 +66,12 @@ import com.simsilica.lemur.focus.FocusManagerState;
 import com.simsilica.lemur.focus.FocusNavigationState;
 import com.simsilica.lemur.input.InputMapper;
 import com.simsilica.lemur.style.Styles;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -220,12 +223,30 @@ public class GuiGlobals {
 
     protected void logBuildInfo() {
         try {
-            java.net.URL u = Resources.getResource("lemur.build.date");
-            String build = Resources.toString(u, Charsets.UTF_8);
+            String build = new String(bytes(GuiGlobals.class.getResourceAsStream("lemur.build.date")), StandardCharsets.UTF_8);
             log.info("Lemur build date:" + build);
         } catch( Exception e ) {
             log.error("Error reading build info", e);
         }
+    }
+
+    public static long copy(InputStream in, OutputStream out, byte[] buffer) throws IOException {
+        int r = 0;
+        long l = 0;
+        while ((r = in.read(buffer)) != -1) {
+            out.write(buffer, 0, r);
+            l += r;
+        }
+        return l;
+    }
+
+    public static byte[] bytes(InputStream in) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        copy(in, out);
+        return out.toByteArray();
+    }
+    public static long copy(InputStream in, OutputStream out) throws IOException {
+        return copy(in, out, new byte[10240]);
     }
 
     public void setupGuiComparators( ViewPort view ) {

@@ -39,7 +39,7 @@ package com.simsilica.lemur.core;
 import java.util.Iterator;
 import java.util.NoSuchElementException; 
 
-import com.google.common.collect.Iterators;
+import com.simsilica.lemur.Iterators;
 
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
@@ -47,8 +47,7 @@ import com.jme3.scene.Spatial;
 import com.simsilica.lemur.focus.FocusManagerState; 
 import com.simsilica.lemur.focus.FocusNavigationState; 
 import com.simsilica.lemur.focus.FocusTarget; 
-import com.simsilica.lemur.focus.FocusTraversal; 
-import com.simsilica.lemur.focus.FocusTraversal.TraversalDirection;
+import com.simsilica.lemur.focus.FocusTraversal;
 
 /**
  *  Wraps a standard GuiLayout to provide basic default focus
